@@ -11,7 +11,9 @@ kwargs = {'author': 'Kenneth T. Moore',
  'description': 'Implementation of the CADRE CubeSat design problem for OpenMDAO 1.0 and higher',
  'download_url': 'http://github.com/OpenMDAO/CADRE.git',
  'include_package_data': True,
- 'install_requires': ['openmdao'],
+ 'install_requires'=[
+        'openmdao', 'mbi', 'pyoptsparse', 'mpi4py', 'petsc==3.5', 'petsc4py==3.5'
+    ],
  'keywords': ['openmdao', 'CADRE'],
  'license': 'Apache 2.0',
  'maintainer': 'Kenneth T. Moore',
