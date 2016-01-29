@@ -45,7 +45,7 @@
     // version.
     "matrix": {
       "numpy": [],
-      "scipy": [],
+      "scipy": ["0.13.3"],
       "cython": [],
     },
 
