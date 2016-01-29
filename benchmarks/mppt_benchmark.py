@@ -75,7 +75,9 @@ class MPPT_MDP(Group):
     n = 1500
     m = 300
     fpath = os.path.dirname(os.path.realpath(__file__))
-    data = pickle.load(open(fpath + "/src/CADRE/test/data1346.pkl", 'rb'))
+    import CADRE
+    cadre_path = os.path.dirname(os.path.realpath(CADRE.__file__))
+    data = pickle.load(open(cadre_path + "/test/data1346.pkl", 'rb'))
 
     # CADRE instances go into a Parallel Group
     para = self.add('parallel', ParallelGroup(), promotes=['*'])
