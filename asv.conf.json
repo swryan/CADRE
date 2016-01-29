@@ -11,12 +11,13 @@
 
     // The URL or local path of the source code repository for the
     // project being benchmarked
-    "repo": "http://github.com/OpenMDAO/CADRE",
-    //"repo": ".",
+    //"repo": "http://github.com/OpenMDAO/CADRE",
+    "repo": ".",
 
     // List of branches to benchmark. If not provided, defaults to "master"
     // (for git) or "tip" (for mercurial).
-    "branches": ["master"],
+    //"branches": ["master"],
+    "branches": ["asv"],
 
     // The DVCS being used.  If not set, it will be automatically
     // determined from "repo" by looking at the protocol in the URL
