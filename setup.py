@@ -19,7 +19,7 @@ kwargs = {
     'keywords': ['openmdao', 'CADRE'],
     'url': 'http://github.com/OpenMDAO/CADRE.git',
     'download_url': 'http://github.com/OpenMDAO/CADRE.git',
-    'install_requires': ['openmdao>=2.3'],
+    'install_requires': ['openmdao[test]'],
     'packages': ['CADRE', 'CADRE.test'],
     'package_data': {'CADRE': ['data/*.pkl', 'test/*.pkl']},
     'include_package_data': True,
