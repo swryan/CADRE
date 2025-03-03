@@ -4,6 +4,9 @@ Battery discipline for CADRE
 
 import numpy as np
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.api import ExplicitComponent
 from openmdao.components.ks_comp import KSfunction
 
@@ -183,6 +186,8 @@ class BatteryPower(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
 
         dI_bat = d_outputs['I_bat']
 
@@ -282,6 +287,9 @@ class BatteryConstraints(ExplicitComponent):
         """
          Matrix-vector product with the Jacobian.
          """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             if 'I_bat' in d_inputs:
                 if 'ConCh' in d_outputs:

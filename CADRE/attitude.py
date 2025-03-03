@@ -3,8 +3,12 @@ Attitude discipline for CADRE.
 """
 
 from six.moves import range
+
 import numpy as np
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.api import ExplicitComponent
 
 from CADRE.kinematics import computepositionrotd, computepositionrotdjacobian
@@ -578,6 +582,9 @@ class Attitude_Sideslip(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dv_e2b_B = d_outputs['v_e2b_B']
 
         if mode == 'fwd':
@@ -690,6 +697,9 @@ class Attitude_Torque(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dT_tot = d_outputs['T_tot']
 
         if mode == 'fwd':

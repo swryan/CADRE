@@ -5,9 +5,9 @@ from __future__ import print_function
 
 import unittest
 
-from packaging.version import Version
-
 import numpy as np
+
+from packaging.version import Version
 
 from openmdao import __version__ as om_version
 from openmdao.api import Problem, LinearBlockGS

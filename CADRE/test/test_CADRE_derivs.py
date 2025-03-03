@@ -53,7 +53,7 @@ class TestCADRE(unittest.TestCase):
         outputs = ['Data']
 
         # check partials
-        # partials = prob.check_partials()  # out_stream=None)
+        partials = prob.check_partials()  # out_stream=None)
         # assert_check_partials(partials)
 
         # check totals

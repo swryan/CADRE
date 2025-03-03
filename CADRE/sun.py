@@ -6,6 +6,9 @@ from six.moves import range
 import numpy as np
 import scipy.sparse
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.core.explicitcomponent import ExplicitComponent
 
 from CADRE.kinematics import computepositionrotd, computepositionrotdjacobian
@@ -143,6 +146,9 @@ class Sun_LOS(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dLOS = d_outputs['LOS']
 
         if mode == 'fwd':
@@ -214,6 +220,9 @@ class Sun_PositionBody(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_e2s_B = d_outputs['r_e2s_B']
 
         if mode == 'fwd':
@@ -321,6 +330,9 @@ class Sun_PositionECI(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_e2s_I = d_outputs['r_e2s_I']
 
         if mode == 'fwd':
@@ -389,6 +401,9 @@ class Sun_PositionSpherical(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             if 'r_e2s_B' in d_inputs:
                 r_e2s_B = d_inputs['r_e2s_B'].reshape((3*self.n), order='F')

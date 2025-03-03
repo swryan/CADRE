@@ -7,6 +7,9 @@ from six.moves import range
 
 import numpy as np
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.api import ExplicitComponent
 
 
@@ -255,6 +258,9 @@ class RK4(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             result_ext = self._applyJext(d_inputs, d_outputs)
 

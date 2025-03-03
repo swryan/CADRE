@@ -5,6 +5,9 @@ Reaction wheel discipline for CADRE
 from six.moves import range
 import numpy as np
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.api import ExplicitComponent
 
 from CADRE import rk4
@@ -98,6 +101,9 @@ class ReactionWheel_Motor(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dT_m = d_outputs['T_m']
 
         if mode == 'fwd':
@@ -184,6 +190,9 @@ class ReactionWheel_Power(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dP_RW = d_outputs['P_RW']
 
         if mode == 'fwd':

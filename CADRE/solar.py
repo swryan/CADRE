@@ -6,6 +6,9 @@ import os
 from six.moves import range
 import numpy as np
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.core.explicitcomponent import ExplicitComponent
 
 from CADRE.kinematics import fixangles
@@ -133,6 +136,9 @@ class Solar_ExposedArea(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         deA = d_outputs['exposedArea']
 
         if mode == 'fwd':

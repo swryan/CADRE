@@ -9,6 +9,9 @@ import numpy as np
 import scipy.sparse
 from MBI import MBI
 
+from packaging.version import Version
+
+from openmdao import __version__ as om_version
 from openmdao.core.explicitcomponent import ExplicitComponent
 
 from CADRE.kinematics import fixangles, computepositionspherical, \
@@ -350,6 +353,9 @@ class Comm_BitRate(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dDr = d_outputs['Dr']
 
         if mode == 'fwd':
@@ -420,6 +426,9 @@ class Comm_Distance(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             if 'r_b2g_A' in d_inputs:
                 for k in range(3):
@@ -481,6 +490,9 @@ class Comm_EarthsSpin(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             if 't' in d_inputs:
                 for k in range(4):
@@ -609,6 +621,9 @@ class Comm_EarthsSpinMtx(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if 'q_E' in d_inputs:
             dO_IE = d_outputs['O_IE']
             dq_E = d_inputs['q_E']
@@ -687,6 +702,9 @@ class Comm_GainPattern(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dgain = d_outputs['gain']
 
         if mode == 'fwd':
@@ -780,6 +798,9 @@ class Comm_GSposEarth(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_e2g_E = d_outputs['r_e2g_E']
 
         if mode == 'fwd':
@@ -857,6 +878,9 @@ class Comm_GSposECI(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_e2g_I = d_outputs['r_e2g_I']
 
         if mode == 'fwd':
@@ -967,6 +991,9 @@ class Comm_LOS(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dCommLOS = d_outputs['CommLOS']
 
         if mode == 'fwd':
@@ -1027,6 +1054,9 @@ class Comm_VectorAnt(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_b2g_A = d_outputs['r_b2g_A']
 
         if mode == 'fwd':
@@ -1109,6 +1139,9 @@ class Comm_VectorBody(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         dr_b2g_B = d_outputs['r_b2g_B']
 
         if mode == 'fwd':
@@ -1240,6 +1273,9 @@ class Comm_VectorSpherical(ExplicitComponent):
         """
         Matrix-vector product with the Jacobian.
         """
+        if Version(om_version) > Version("3.35"):
+            self.compute_partials(inputs, None)
+
         if mode == 'fwd':
             if 'r_b2g_A' in d_inputs:
                 r_b2g_A = d_inputs['r_b2g_A'].reshape((3 * self.n), order='F')
