@@ -20,7 +20,7 @@ class ExplicitComponent(om_ExplicitComponent):
         save = self.matrix_free
         self.matrix_free = False
         try:
-            if om_version >= '3.39.0':
+            if om_version > '3.39.0':
                 super()._linearize(sub_do_ln)
             else:
                 super()._linearize(jac, sub_do_ln)
